@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/airbnb/static/css/main.cf506294.css",
+    "main.js": "/airbnb/static/js/main.bb423fd2.js",
+    "static/media/House.png": "/airbnb/static/media/House.763c32ede03e2f8fefc0.png",
+    "static/media/Nature.png": "/airbnb/static/media/Nature.fb62cba734bc9ada3bbd.png",
+    "static/media/Dog.png": "/airbnb/static/media/Dog.48e19ca229e421399d08.png",
+    "static/media/Water.png": "/airbnb/static/media/Water.212446623706320e9830.png",
+    "static/media/Uijeongbu.png": "/airbnb/static/media/Uijeongbu.6be87724cee82d9f0e19.png",
+    "static/media/Daegu.png": "/airbnb/static/media/Daegu.d85acb58c9e98acab121.png",
+    "static/media/Ulsan.png": "/airbnb/static/media/Ulsan.8f66fe5aca3e93b03330.png",
+    "static/media/Suwon.png": "/airbnb/static/media/Suwon.ea98f4368f15870eaf8c.png",
+    "static/media/Daejeon.png": "/airbnb/static/media/Daejeon.c94611c9d04b00a547c2.png",
+    "static/media/Bucheon.png": "/airbnb/static/media/Bucheon.4b0513bec09febde4c91.png",
+    "static/media/Gwangju.png": "/airbnb/static/media/Gwangju.f120488fca0a7284b439.png",
+    "static/media/Seoul.png": "/airbnb/static/media/Seoul.35c53d9c1f6ad84d0137.png",
+    "static/media/user.svg": "/airbnb/static/media/user.b9bb5d60cc3822845a06c9647b924804.svg",
+    "index.html": "/airbnb/index.html",
+    "static/media/searchBtn.svg": "/airbnb/static/media/searchBtn.a9cc359bd43d20f842ba1932fc44fd26.svg",
+    "static/media/menu.svg": "/airbnb/static/media/menu.e56b705b2d7ac7bbd8de31a512a64f80.svg",
+    "main.cf506294.css.map": "/airbnb/static/css/main.cf506294.css.map",
+    "main.bb423fd2.js.map": "/airbnb/static/js/main.bb423fd2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cf506294.css",
+    "static/js/main.bb423fd2.js"
+  ]
+}
