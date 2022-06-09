@@ -1,7 +1,9 @@
+import { useContext } from 'react';
 import CityInfo from './CityInfo';
 import TripInfo from './TripInfo';
 import { cityData } from 'assets/data/cityData';
 import { tripData } from 'assets/data/tripData';
+import { OpenModalContext } from 'contexts/OpenModalProvider';
 
 const title = {
   cityTitle: '가까운 여행지 둘러보기',
@@ -9,8 +11,10 @@ const title = {
 };
 
 function Main() {
+  const { handleClickSearchBarBtn } = useContext(OpenModalContext);
+
   return (
-    <main>
+    <main onClick={handleClickSearchBarBtn}>
       <CityInfo title={title.cityTitle} data={cityData} />
       <TripInfo title={title.tripTitle} data={tripData} />
     </main>

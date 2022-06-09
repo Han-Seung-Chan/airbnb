@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import { Center, Flex } from '@chakra-ui/react';
 import styled from 'styled-components';
 
@@ -8,21 +8,12 @@ import PriceRange from './PriceRange';
 import CalendarProvider from 'contexts/CalendarProvider.tsx';
 import PersonnelProvider from 'contexts/PersonnelProvider.tsx';
 import RenderModal from 'components/Modal/RenderModal';
+import { OpenModalContext } from 'contexts/OpenModalProvider';
 
 import { ReactComponent as SearchIcon } from 'assets/svg/searchBtn.svg';
 
 function SearchBar() {
-  const [selectedContent, setSelectedContent] = useState(null);
-
-  const handleClickSearchBarBtn = useCallback(
-    (contentType) => {
-      if (selectedContent === contentType) setSelectedContent(null);
-      else {
-        setSelectedContent(contentType);
-      }
-    },
-    [selectedContent],
-  );
+  const { selectedContent } = useContext(OpenModalContext);
 
   return (
     <CalendarProvider>
@@ -30,13 +21,10 @@ function SearchBar() {
         <Center>
           <SearchContainer>
             <Flex justify="space-between">
-              <CheckInOut onClick={handleClickSearchBarBtn} title={'체크인'} />
-              <CheckInOut
-                onClick={handleClickSearchBarBtn}
-                title={'체크아웃'}
-              />
-              <PriceRange onClick={handleClickSearchBarBtn} />
-              <Personnel onClick={handleClickSearchBarBtn} />
+              <CheckInOut title={'체크인'} />
+              <CheckInOut title={'체크아웃'} />
+              <PriceRange />
+              <Personnel />
               <SearchIcon style={{ margin: '22px' }} />
             </Flex>
           </SearchContainer>

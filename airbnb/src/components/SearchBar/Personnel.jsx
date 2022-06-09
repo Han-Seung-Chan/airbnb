@@ -1,13 +1,15 @@
-import React from 'react';
+import { useContext } from 'react';
 import { Btn, ContentBox, BarTitle, BarContent } from './SearchBar_styled.jsx';
 import { usePersonnelNumState } from 'hooks/usePersonnelNumState.tsx';
 import { usePersonnelNumSetter } from 'hooks/usePersonnelNumSetter.tsx';
 import { ReactComponent as DeleteIcon } from 'assets/svg/deleteBtn.svg';
+import { OpenModalContext } from 'contexts/OpenModalProvider.jsx';
 
-function Personnel({ onClick }) {
+function Personnel() {
   const { adultsNum, childrenNum, babiesNum } = usePersonnelNumState();
   const { setAdultsNum, setChildrenNum, setBabiesNum } =
     usePersonnelNumSetter();
+  const { handleClickSearchBarBtn } = useContext(OpenModalContext);
 
   function getGuestCount() {
     if (adultsNum === 0) return '게스트 추가';
@@ -28,13 +30,13 @@ function Personnel({ onClick }) {
   const deleteBtn = adultsNum ? (
     <DeleteIcon
       onClick={handelResetEvent}
-      style={{ position: 'absolute', top: '25px', left: '800px' }}
+      style={{ position: 'absolute', top: '25px', left: '818px' }}
     />
   ) : undefined;
   return (
     <>
       <Btn>
-        <ContentBox onClick={() => onClick('TOTAL_GUESTS')}>
+        <ContentBox onClick={() => handleClickSearchBarBtn('TOTAL_GUESTS')}>
           <BarTitle>인원</BarTitle>
           <BarContent>{getGuestCount()}</BarContent>
         </ContentBox>
