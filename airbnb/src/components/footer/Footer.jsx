@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import styled from 'styled-components';
 import { Flex } from '@chakra-ui/react';
 
@@ -5,10 +6,13 @@ import { footerData } from '../../assets/data/footerData.js';
 import Content from './Content.jsx';
 import { flexColumn } from 'style/mixins.js';
 import CompanyInfo from './CompanyInfo.jsx';
+import { OpenModalContext } from 'contexts/OpenModalProvider';
 
 function Footer() {
+  const { handleClickSearchBarBtn } = useContext(OpenModalContext);
+
   return (
-    <FooterDiv>
+    <FooterDiv onClick={handleClickSearchBarBtn}>
       <Flex flexDirection="row">
         {footerData.map((data) => (
           <Content key={data.title} data={data} />

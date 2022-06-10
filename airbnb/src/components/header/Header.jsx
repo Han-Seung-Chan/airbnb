@@ -1,12 +1,16 @@
-import { Flex, Spacer } from '@chakra-ui/react';
+import { useContext } from 'react';
 import styled from 'styled-components';
+import { Flex, Spacer } from '@chakra-ui/react';
 import Logo from './Logo';
 import UpperMenu from './UpperMenu';
 import UserInfo from './UserInfo';
+import { OpenModalContext } from 'contexts/OpenModalProvider';
 
 function Header() {
+  const { handleClickSearchBarBtn } = useContext(OpenModalContext);
+
   return (
-    <StyledHeader>
+    <StyledHeader onClick={handleClickSearchBarBtn}>
       <Flex justify="center" align="center">
         <Logo />
         <Spacer />

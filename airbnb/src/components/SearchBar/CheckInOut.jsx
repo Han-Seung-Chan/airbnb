@@ -1,11 +1,16 @@
-import { Btn, ContentBox, BarTitle, BarContent } from './SearchBar_styled.jsx';
+import { useContext } from 'react';
+
 import { useCalendarInputState } from 'hooks/useCalendarInputState.tsx';
 import { useCalendarInputDispatch } from 'hooks/useCalendarInputDispatch.tsx';
-import { ReactComponent as DeleteIcon } from 'assets/svg/deleteBtn.svg';
+import { OpenModalContext } from 'contexts/OpenModalProvider.jsx';
 
-function CheckInOut({ onClick, title }) {
+import { ReactComponent as DeleteIcon } from 'assets/svg/deleteBtn.svg';
+import { Btn, ContentBox, BarTitle, BarContent } from './SearchBar_styled.jsx';
+
+function CheckInOut({ title }) {
   const { checkIn, checkOut } = useCalendarInputState();
   const { handelResetEvent } = useCalendarInputDispatch();
+  const { handleClickSearchBarBtn } = useContext(OpenModalContext);
 
   const deleteBtn =
     title === '체크아웃' && checkIn && checkOut ? (
@@ -22,7 +27,7 @@ function CheckInOut({ onClick, title }) {
   }
   return (
     <>
-      <Btn onClick={() => onClick('CHECK_IN_OUT')}>
+      <Btn onClick={() => handleClickSearchBarBtn('CHECK_IN_OUT')}>
         <ContentBox>
           <BarTitle>{title}</BarTitle>
           <BarContent>{getCheckPoint()}</BarContent>

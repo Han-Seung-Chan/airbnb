@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import { Center, Flex } from '@chakra-ui/react';
 import styled from 'styled-components';
 
@@ -10,21 +10,12 @@ import PersonnelProvider from 'contexts/PersonnelProvider.tsx';
 import UserPriceResultProvider from 'contexts/PriceRangeProvider.tsx';
 
 import RenderModal from 'components/Modal/RenderModal';
+import { OpenModalContext } from 'contexts/OpenModalProvider';
 
 import { ReactComponent as SearchIcon } from 'assets/svg/searchBtn.svg';
 
 function SearchBar() {
-  const [selectedContent, setSelectedContent] = useState(null);
-
-  const handleClickSearchBarBtn = useCallback(
-    (contentType) => {
-      if (selectedContent === contentType) setSelectedContent(null);
-      else {
-        setSelectedContent(contentType);
-      }
-    },
-    [selectedContent],
-  );
+  const { selectedContent } = useContext(OpenModalContext);
 
   return (
     <CalendarProvider>

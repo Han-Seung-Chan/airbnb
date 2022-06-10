@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Btn, ContentBox, BarTitle, BarContent } from './SearchBar_styled.jsx';
+
 import usePriceRangeResultHook from 'hooks/usePriceRangeResult.tsx';
 import { ReactComponent as DeleteIcon } from 'assets/svg/deleteBtn.svg';
 
@@ -29,11 +30,7 @@ function PriceRange({ onClick }) {
       setResetBtn('open');
     }
     return `${minPrice}원 - ${maxPrice}원`;
-  }
-
-  // useEffect(() => {
-  //   showPrice();
-  // });
+  };
 
   return (
     <>
