@@ -1,14 +1,12 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import BarChart from './Canvas';
-import { Box, Slider, ThemeProvider } from '@mui/material';
+import { Box, Slider } from '@mui/material';
 import {
   PriceRangeContainer,
   PriceRangeTitle,
   PriceRangePrice,
   PriceRangeCaption,
-  slidertheme,
 } from './PriceRange.styled';
-import usePriceRangeResultHook from 'hooks/usePriceRangeResult';
 const sampleData = [
   { percentage: 0, price: 10500, number: 100 },
   { percentage: 0, price: 20000, number: 20 },
@@ -29,9 +27,10 @@ function PriceRangeModal() {
   const [value, setValue] = useState([0, 100]); // Range Slider의 percentage 계산.
   const [price, setPrice] = useState([0, 100]);
   const [newAverage, setNewAverage] = useState(0);
-  const [throttling, setThrottling] = useState('block');
-
-  const { minPrice, maxPrice, setUserChoice } = usePriceRangeResultHook();
+  const [userInput, setUserInput] = useState({
+    minPrice: 0,
+    maxPrice: 100,
+  });
 
   let sortedList: any[] = sampleData.sort((pre, cur) =>
     pre.price > cur.price ? 1 : pre.price < cur.price ? -1 : 0,
@@ -41,8 +40,8 @@ function PriceRangeModal() {
     e['percentage'] = i / sortedList.length;
   });
 
-  let maxPriceinMocal = priceList.reduce((pre, cur) => (pre < cur ? cur : pre));
-  let minPriceinModal = priceList.reduce((pre, cur) => (pre > cur ? cur : pre));
+  let maxPrice = priceList.reduce((pre, cur) => (pre < cur ? cur : pre));
+  let minPrice = priceList.reduce((pre, cur) => (pre > cur ? cur : pre));
   let sum = priceList.reduce((pre, cur) => pre + cur);
   let average = Math.floor(sum / priceList.length);
 
@@ -50,24 +49,6 @@ function PriceRangeModal() {
     setValue(newValue as number[]);
     // console.log(newValue); // 결과값 측정
     recalculatePrice();
-  };
-
-  const handleDragStop = () => {
-    console.log('it isblocked');
-    setThrottling('noBlock');
-    if (throttling !== 'block') {
-      console.log(throttling);
-      setUserChoice({
-        minPrice: price[0],
-        maxPrice: price[1],
-      });
-    } else {
-      setThrottling('block');
-    }
-    // 왜 전달이 안될까??
-    console.log(price[0], price[1], 'drag stopeed');
-    console.log(minPrice, maxPrice, 'price why not change?');
-    console.log(throttling);
   };
 
   const recalculatePrice = () => {
@@ -102,7 +83,6 @@ function PriceRangeModal() {
 
     setPrice([newMinPrice, newMaxPrice]);
     setNewAverage(theListForNewAverageCalculationStep3);
-    console.log(price[0], price[1]);
   };
 
   useEffect(() => {
@@ -134,27 +114,21 @@ function PriceRangeModal() {
             margin="0px"
           />
         </Box>
-        <ThemeProvider theme={slidertheme}>
-          <Box
-            sx={{
-              position: 'absolute',
-              top: 310,
-              width: 300,
-            }}
-          >
-            <Slider
-              getAriaLabel={() => 'Price change'}
-              value={value}
-              onChange={handleChange}
-              onChangeCommitted={handleDragStop}
-              valueLabelDisplay="auto"
-              valueLabelFormat={(e) => (
-                <span>상위 {100 - e}%의 가격입니다.</span>
-              )}
-              color="primary"
-            />
-          </Box>
-        </ThemeProvider>
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 310,
+            width: 300,
+          }}
+        >
+          <Slider
+            getAriaLabel={() => 'Price change'}
+            value={value}
+            onChange={handleChange}
+            valueLabelDisplay="auto"
+            valueLabelFormat={(e) => <span>상위 {100 - e}%의 가격입니다.</span>}
+          />
+        </Box>
       </PriceRangeContainer>
     </>
   );

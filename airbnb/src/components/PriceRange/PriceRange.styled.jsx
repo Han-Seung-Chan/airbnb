@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const PriceRangeContainer = styled.div`
   width: 300px;
@@ -7,6 +6,7 @@ const PriceRangeContainer = styled.div`
   margin: 30px;
   z-index: 1;
 `;
+
 const PriceRangeTitle = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.xs};
   margin-top: 10px;
@@ -22,21 +22,10 @@ const PriceRangeCaption = styled.p`
   color: ${({ theme }) => theme.colors.gray3};
   margin-bottom: 15px;
 `;
-const slidertheme = createTheme({
-  palette: {
-    primary: {
-      main: '#008000',
-    },
-    secondary: {
-      main: '#006600',
-    },
-  },
-});
 
 export {
   PriceRangeContainer,
   PriceRangeTitle,
   PriceRangePrice,
   PriceRangeCaption,
-  slidertheme,
 };
