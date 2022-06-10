@@ -1,4 +1,4 @@
-import { useCallback, useContext, useState } from 'react';
+import { useContext } from 'react';
 import { Center, Flex } from '@chakra-ui/react';
 import styled from 'styled-components';
 
@@ -11,39 +11,33 @@ import UserPriceResultProvider from 'contexts/PriceRangeProvider.tsx';
 
 import RenderModal from 'components/Modal/RenderModal';
 import { OpenModalContext } from 'contexts/OpenModalProvider';
-
 import { ReactComponent as SearchIcon } from 'assets/svg/searchBtn.svg';
+import { useNavigate } from 'react-router-dom';
 
 function SearchBar() {
   const { selectedContent } = useContext(OpenModalContext);
+  let navigate = useNavigate();
+
+  const changeResultPage = () => navigate('/result');
 
   return (
     <CalendarProvider>
       <PersonnelProvider>
-        <UserPriceResultProvider>
-          <Center>
-            <SearchContainer>
-              <Flex justify="space-between">
-                <CheckInOut
-                  onClick={handleClickSearchBarBtn}
-                  title={'체크인'}
-                />
-                <CheckInOut
-                  onClick={handleClickSearchBarBtn}
-                  title={'체크아웃'}
-                />
-
-                <PriceRange onClick={handleClickSearchBarBtn} />
-
-                <Personnel onClick={handleClickSearchBarBtn} />
-                <SearchIcon style={{ margin: '22px' }} />
-              </Flex>
-            </SearchContainer>
-            {selectedContent && (
-              <RenderModal selectedContent={selectedContent} />
-            )}
-          </Center>
-        </UserPriceResultProvider>
+        <Center>
+          <SearchContainer>
+            <Flex justify="space-between">
+              <CheckInOut title={'체크인'} />
+              <CheckInOut title={'체크아웃'} />
+              <PriceRange />
+              <Personnel />
+              <SearchIcon
+                style={{ margin: '22px' }}
+                onClick={changeResultPage}
+              />
+            </Flex>
+          </SearchContainer>
+          {selectedContent && <RenderModal selectedContent={selectedContent} />}
+        </Center>
       </PersonnelProvider>
     </CalendarProvider>
   );
