@@ -16,7 +16,13 @@ function BarChart(props) {
       const graphWidth = CANVAS_WIDTH / data.length;
       const graphHeight = data[i].number * -1;
       ctx.fillStyle =
-        'rgb(' + 0 + ', ' + Math.floor(210 - 10 * i) + ',' + 0 + ')';
+        'rgb(' +
+        0 +
+        ', ' +
+        Math.floor(255 - 15 * i) +
+        ',' +
+        Math.floor(255 - 4.25 * i) +
+        ')';
       ctx.fillRect(positionX, positionY, graphWidth, graphHeight);
     }
   };
