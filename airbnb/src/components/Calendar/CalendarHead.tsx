@@ -95,7 +95,7 @@ const Days = styled.ul`
 const Day = styled.li`
   width: calc(95% / 7);
   text-align: center;
-  margin-left: 25px;
+  margin-left: 38px;
 
   :nth-child(7n + 1) {
     color: ${({ theme }) => theme.colors.red};

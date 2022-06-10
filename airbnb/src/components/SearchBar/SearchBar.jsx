@@ -1,4 +1,4 @@
-import { useCallback, useContext, useState } from 'react';
+import { useContext } from 'react';
 import { Center, Flex } from '@chakra-ui/react';
 import styled from 'styled-components';
 
@@ -9,11 +9,14 @@ import CalendarProvider from 'contexts/CalendarProvider.tsx';
 import PersonnelProvider from 'contexts/PersonnelProvider.tsx';
 import RenderModal from 'components/Modal/RenderModal';
 import { OpenModalContext } from 'contexts/OpenModalProvider';
-
 import { ReactComponent as SearchIcon } from 'assets/svg/searchBtn.svg';
+import { useNavigate } from 'react-router-dom';
 
 function SearchBar() {
   const { selectedContent } = useContext(OpenModalContext);
+  let navigate = useNavigate();
+
+  const changeResultPage = () => navigate('/result');
 
   return (
     <CalendarProvider>
@@ -25,7 +28,10 @@ function SearchBar() {
               <CheckInOut title={'체크아웃'} />
               <PriceRange />
               <Personnel />
-              <SearchIcon style={{ margin: '22px' }} />
+              <SearchIcon
+                style={{ margin: '22px' }}
+                onClick={changeResultPage}
+              />
             </Flex>
           </SearchContainer>
           {selectedContent && <RenderModal selectedContent={selectedContent} />}
