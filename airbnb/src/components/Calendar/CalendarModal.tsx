@@ -25,7 +25,7 @@ function CalendarModal() {
     } else {
       setLastTotalDate(makeDate(year, month + 1));
     }
-  }, [month]);
+  }, [month, year]);
 
   return (
     <Flex justify="space-between">
