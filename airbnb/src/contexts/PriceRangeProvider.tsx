@@ -1,20 +1,41 @@
-import React, { useState, useContext, createContext } from 'react';
+import React, {
+  useState,
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useMemo,
+} from 'react';
 
-interface UserChoiceForm {
-  minPrice: number;
-  maxPrice: number;
+interface UserPriceChoiceInterface {
+  userChoice: { minPrice: number; maxPrice: number };
+  setUserChoice: Dispatch<
+    SetStateAction<{ minPrice: number; maxPrice: number }>
+  >;
 }
 
-const UserInputPriceResultContext = createContext<UserChoiceForm | null>(null);
+export const UserInputPriceResultContext =
+  createContext<UserPriceChoiceInterface | null>(null);
 
 function UserPriceResultProvider({ children }: { children: React.ReactNode }) {
-  const [finalInput, setFinalInput] = useState({ minPrice: 0, maxPrice: 100 });
+  const [userChoice, setUserChoice] = useState<
+    UserPriceChoiceInterface['userChoice']
+  >({ minPrice: 0, maxPrice: 100 });
+
+  const setterForUserChoice: UserPriceChoiceInterface['setUserChoice'] = (
+    value,
+  ) => {
+    setUserChoice(value);
+  };
 
   return (
-    <UserInputPriceResultContext.Provider value={finalInput}>
-      {children}
-    </UserInputPriceResultContext.Provider>
+    <>
+      <UserInputPriceResultContext.Provider
+        value={{ userChoice, setUserChoice }}
+      >
+        {children}
+      </UserInputPriceResultContext.Provider>
+    </>
   );
 }
 
-export default { UserPriceResultProvider };
+export default UserPriceResultProvider;

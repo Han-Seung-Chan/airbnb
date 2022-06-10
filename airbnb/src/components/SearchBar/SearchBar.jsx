@@ -7,6 +7,8 @@ import Personnel from './Personnel';
 import PriceRange from './PriceRange';
 import CalendarProvider from 'contexts/CalendarProvider.tsx';
 import PersonnelProvider from 'contexts/PersonnelProvider.tsx';
+import UserPriceResultProvider from 'contexts/PriceRangeProvider.tsx';
+
 import RenderModal from 'components/Modal/RenderModal';
 
 import { ReactComponent as SearchIcon } from 'assets/svg/searchBtn.svg';
@@ -27,21 +29,30 @@ function SearchBar() {
   return (
     <CalendarProvider>
       <PersonnelProvider>
-        <Center>
-          <SearchContainer>
-            <Flex justify="space-between">
-              <CheckInOut onClick={handleClickSearchBarBtn} title={'체크인'} />
-              <CheckInOut
-                onClick={handleClickSearchBarBtn}
-                title={'체크아웃'}
-              />
-              <PriceRange onClick={handleClickSearchBarBtn} />
-              <Personnel onClick={handleClickSearchBarBtn} />
-              <SearchIcon style={{ margin: '22px' }} />
-            </Flex>
-          </SearchContainer>
-          {selectedContent && <RenderModal selectedContent={selectedContent} />}
-        </Center>
+        <UserPriceResultProvider>
+          <Center>
+            <SearchContainer>
+              <Flex justify="space-between">
+                <CheckInOut
+                  onClick={handleClickSearchBarBtn}
+                  title={'체크인'}
+                />
+                <CheckInOut
+                  onClick={handleClickSearchBarBtn}
+                  title={'체크아웃'}
+                />
+
+                <PriceRange onClick={handleClickSearchBarBtn} />
+
+                <Personnel onClick={handleClickSearchBarBtn} />
+                <SearchIcon style={{ margin: '22px' }} />
+              </Flex>
+            </SearchContainer>
+            {selectedContent && (
+              <RenderModal selectedContent={selectedContent} />
+            )}
+          </Center>
+        </UserPriceResultProvider>
       </PersonnelProvider>
     </CalendarProvider>
   );
