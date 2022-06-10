@@ -49,7 +49,7 @@ function CalendarDates({ date, year, month }: CalendarDatesProps) {
 
 const DateList = styled.li`
   position: relative;
-  width: calc(94% / 7);
+  width: calc(93% / 7);
   height: 60px;
   text-align: right;
   border: 1px solid ${({ theme }) => theme.colors.white};
