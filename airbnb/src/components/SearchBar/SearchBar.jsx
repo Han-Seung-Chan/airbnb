@@ -7,6 +7,8 @@ import Personnel from './Personnel';
 import PriceRange from './PriceRange';
 import CalendarProvider from 'contexts/CalendarProvider.tsx';
 import PersonnelProvider from 'contexts/PersonnelProvider.tsx';
+import UserPriceResultProvider from 'contexts/PriceRangeProvider.tsx';
+
 import RenderModal from 'components/Modal/RenderModal';
 import { OpenModalContext } from 'contexts/OpenModalProvider';
 import { ReactComponent as SearchIcon } from 'assets/svg/searchBtn.svg';
